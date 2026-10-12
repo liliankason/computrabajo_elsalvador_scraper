@@ -11,7 +11,7 @@ on:
     # been scraped, the script exits almost instantly (it sees
     # co_SCRAPE_COMPLETE.flag and returns), so these scheduled ticks
     # become a harmless no-op that costs a few seconds of Actions minutes.
-    - cron: "55 0,3,6,9,12,15,18,21 * * *"
+     - cron: "*/30 * * * *"
 
 concurrency:
   # This MUST be unique per country. If every country workflow shared
@@ -58,7 +58,7 @@ jobs:
           # step below, so the script always has time to save progress and
           # exit cleanly on its own before GitHub would kill it mid-request.
           MAX_RUNTIME_SECONDS: "20000"
-        run: python computrabajo_co_scraper.py
+        run: python computrabajo_elsalvador_scraper.py
 
       # ── UPDATED ──────────────────────────────────────────────────────────
       # Now also commits co_fetch_diagnostics.json, the new file the script
