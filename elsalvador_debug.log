@@ -131609,3 +131609,8 @@ Residir en zonas aledañas Cara Sucia…
 2026-10-17 15:18:46,071 INFO 🚀 Computrabajo El Salvador scraper — starting… (Ctrl+C is safe; re-run to resume)
 2026-10-17 15:18:46,071 INFO 🏁 elsalvador_SCRAPE_COMPLETE.flag exists — all locations already scraped. Delete it to force a fresh full re-scrape.
 2026-10-17 15:18:46,071 INFO ✅ Done.
+2026-10-17 15:53:34,522 WARNING [STARTUP CHECK] INTERNAL_BOT_KEY is EMPTY/MISSING — X-Internal-Auth will NOT be sent.
+2026-10-17 15:53:34,522 INFO [STARTUP CHECK] GIT_AUTO_PUSH is ON — committing/pushing every 1 saved job(s).
+2026-10-17 15:53:34,522 INFO 🚀 Computrabajo El Salvador scraper — starting… (Ctrl+C is safe; re-run to resume)
+2026-10-17 15:53:34,522 INFO 🏁 elsalvador_SCRAPE_COMPLETE.flag exists — all locations already scraped. Delete it to force a fresh full re-scrape.
+2026-10-17 15:53:34,522 INFO ✅ Done.
