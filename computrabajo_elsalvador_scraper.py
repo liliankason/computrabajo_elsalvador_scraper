@@ -35,10 +35,9 @@ from bs4 import BeautifulSoup
 # ════════════════════════════════════════════════════════════════════════════
 # CONFIG
 # ════════════════════════════════════════════════════════════════════════════
-COUNTRY_NAME = "El Salvador"                 # default location + log text
-DEFAULT_CURRENCY = "USD"                   # used when the posting gives no currency
 BASE_URL = "https://sv.computrabajo.com"   # real website domain — do not change
 HOME_URL = BASE_URL + "/"
+COUNTRY_NAME = "El Salvador"
 
 REQUEST_TIMEOUT = 20
 VERBOSE = True
@@ -76,7 +75,7 @@ HEADERS = {
         "(KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36"
     ),
     "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8",
-    "Accept-Language": "es-SV;q=0.9,es;q=0.8,en;q=0.7",
+    "Accept-Language": "es-SV,es;q=0.9,en;q=0.8",
     "Accept-Encoding": "gzip, deflate",
     "Sec-Fetch-Dest": "document",
     "Sec-Fetch-Mode": "navigate",
@@ -184,7 +183,7 @@ def git_push_progress(force: bool = False):
         if not files:
             return
 
-        _git("config", "user.name", "computrabajo-elsalvador-scraper-bot")
+        _git("config", "user.name", "computrabajo-scraper-bot")
         _git("config", "user.email", "actions@users.noreply.github.com")
 
         _git("add", "-f", "--", *files)
@@ -193,7 +192,7 @@ def git_push_progress(force: bool = False):
             _jobs_since_push = 0
             return
 
-        commit = _git("commit", "-m", "El Salvador scraper progress update [skip ci]")
+        commit = _git("commit", "-m", "Scraper progress update [skip ci]")
         if commit.returncode != 0:
             logger.warning(f"    git commit failed: {commit.stderr.strip()[:300]}")
             return
@@ -737,9 +736,7 @@ def scrape_job_details(job_url: str) -> dict:
         amount = f"{mn}-{mx}" if mn and mx else (single or mn or mx or "")
     else:
         amount = salary_val
-    currency = (jp.get("salaryCurrency")
-                or (base_salary.get("currency") if isinstance(base_salary, dict) else "")
-                or DEFAULT_CURRENCY)
+    currency = jp.get("salaryCurrency") or (base_salary.get("currency") if isinstance(base_salary, dict) else "") or "USD"
     salary_range = f"{amount} {currency}".strip() if amount else ""
 
     date_posted_str = first_str(jp.get("datePosted"))
